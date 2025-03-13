@@ -1,4 +1,4 @@
-import { IsString, IsBoolean } from 'class-validator';
+import { IsString, IsBoolean, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class TaskDTO {
   readonly description: string;
@@ -6,4 +6,20 @@ export class TaskDTO {
 }
 
 export class CreateTaskDTO {
-  
+  @IsString()
+  @IsNotEmpty()
+  readonly description: string;
+
+  @IsBoolean()
+  readonly isDone: boolean;
+}
+
+export class UpdateTaskDTO {
+  @IsString()
+  @IsOptional()
+  readonly description: string;
+
+  @IsBoolean()
+  @IsOptional()
+  readonly isDone: boolean;
+}
